@@ -21,25 +21,26 @@ botao.addEventListener('click', () => {
 }); */
 
 
-//fecht
+// Refatorando com fecht
 var botao = document.getElementById('btn')
-var body = document.getElementById('div')
-
+var body = document.getElementById('body')
 botao.addEventListener('click', () => {
-    var input = document.getElementById('input').value
+    var input = document.getElementById('cep-entrada').value;
     
+//     // Fetch
     const options = {
-        method: "GET",
-        headers: {'content-type': 'application/json'},
+    method: "GET",
+    header: {'contentType': 'application/json'}
     }
+    
     fetch(`https://viacep.com.br/ws/${input}/json/`, options)
-    .then((response) => {
+    .then((response)=>{
         return response.json()
-    }).then((response) => {
-        body.innerHTML += `<br><br>Bairro: ${response.bairro}`
-        body.innerHTML += `<br>Logradouro: ${response.logradouro}`
-        body.innerHTML += `<br>Localidade: ${response.localidade}`
-    }).catch((err) => {
-        console.error (err)
-    })       
+    }).then((response)=>{ 
+        body.innerHTML += `<br><br>Bairro: ${response.bairro}`;
+        body.innerHTML += `<br>Logradouro: ${response.logradouro}`;
+        body.innerHTML += `<br>Localidade: ${response.localidade}`;
+    }).catch((err)=>{
+        console.error(err)
+    });
 })
